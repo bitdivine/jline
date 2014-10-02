@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<link  href="nvd3/src/nv.d3.css" rel="stylesheet" type="text/css">
+<script src="nvd3/lib/d3.v3.js"></script>
+<script src="nvd3/nv.d3.js"></script>
+<script src="nvd3/src/models/legend.js"></script>
+<script src="nvd3/src/models/line.js"></script>
+<script src="nvd3/src/utils.js"></script>
+</head>
+<body>
+
+
+<svg height='1000'></svg>
+
+<script>
+//<![CDATA[
+/*These lines are all chart setup.  Pick and choose which chart features you want to utilize. */
+function draw1(selector, data){
+	nv.addGraph(function() {
+	  var chart = nv.models.lineChart()
+			.margin({left: 100})  //Adjust chart margins to give the x-axis some breathing room.
+			.useInteractiveGuideline(true)  //We want nice looking tooltips and a guideline!
+			.transitionDuration(350)  //how fast do you want the lines to transition?
+			.showLegend(false)       //Show the legend, allowing users to turn on/off line series.
+			.showYAxis(true)        //Show the y-axis
+			.showXAxis(true)        //Show the x-axis
+	  ;
+
+	  chart.xAxis     //Chart x-axis settings
+	      .axisLabel('__X_AXIS__')
+	      .tickFormat(d3.format(',r'));
+
+	  chart.yAxis     //Chart y-axis settings
+	      .axisLabel('__Y_AXIS__')
+	      .tickFormat(d3.format('.02f'));
+
+          chart.height(800);
+          chart.tooltip(function(key, x, y, e, graph) {
+              var d = e.series.values[e.pointIndex];
+              return '<h3>' + e.series.key + '</h3><p>' + JSON.stringify(d);
+          });
+
+	  d3.select(selector)    //Select the <svg> element you want to render the chart in.   
+	      .datum(data)         //Populate the <svg> element with chart data...
+	      .call(chart);          //Finally, render the chart!
+
+	  //Update the chart when window resizes.
+	  nv.utils.windowResize(function() { chart.update() });
+	  return chart;
+	});
+}
+
+function draw2(selector, data){
+nv.addGraph(function() {
+  var chart = nv.models.lineChart();
+  chart.showLegend(false);
+
+  chart.xAxis
+	.axisLabel('__X_AXIS__')
+      .tickFormat(d3.format(',f'));
+
+  chart.yAxis
+	      .axisLabel('__Y_AXIS__')
+      .tickFormat(d3.format(',.2f'));
+
+  chart.tooltipContent(function(key, x, y, e, graph) {
+      var d = e.series.values[e.pointIndex];
+      return '<h3>' + e.series.key + '</h3><p>'+y+'</p>' + d.legend;
+  });
+
+
+  d3.select(selector)
+      .datum(data)
+      .transition().duration(500)
+      .call(chart);
+
+  nv.utils.windowResize(chart.update);
+
+  return chart;
+});
+}
+
+draw = draw2;
+
+
+function data_g2nvd3(data){
+	return data.map(function(data){
+		return {key:data.target,values:datapoints.map(function(tuple){return{x:tuple[0],y:tuple[1]};})};
+	});
+}
+
+function getUrl(url, callback){
+        var xhr= new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.onreadystatechange= function() {
+                if (this.readyState!==4) return;
+                if (this.status!==200) return;
+		callback(null, this.responseText);
+        };
+        xhr.send();
+}
+
+function drawUrl(url){
+	getUrl(url, function(err, data){
+		draw('svg', data_g2nvd3(data));
+	});
+}
+
+draw("svg",__DATA__);
+
+//]]>
+</script>
+</body>
+</html>

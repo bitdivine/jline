@@ -1,0 +1,37 @@
+{
+  "name": "jline",
+  "version": "0.0.0",
+  "description": "Sort, grep and join files where every line is JSON.",
+  "main": "index.js",
+  "bin": {
+    "jline": "chart.js"
+  },
+  "scripts": {
+    "test": "jshint bin/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitdivine/jline.git"
+  },
+  "keywords": [
+    "JSON",
+    "lines",
+    "jline",
+    "jlines",
+    "command",
+    "line",
+    "utility",
+    "join",
+    "filter",
+    "grep"
+  ],
+  "author": "bitdivine",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/bitdivine/jline/issues"
+  },
+  "homepage": "https://github.com/bitdivine/jline",
+  "dependencies": {
+    "split": "^0.3.0"
+  }
+}
