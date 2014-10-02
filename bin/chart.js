@@ -38,7 +38,7 @@ process.stdin
 	})};
     });
     console.log(html.replace(/__X_AXIS__/g, by).replace(/__Y_AXIS__/g, val).replace(/__DATA__/g, JSON.stringify(data)));
-})
+});
 
 
 

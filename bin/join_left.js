@@ -12,8 +12,9 @@ var ans = {};
 fs.createReadStream(files[0])
     .pipe(split())
     .on('data', function (line) {
+        var record;
         try{
-            var record = JSON.parse(line);
+            record = JSON.parse(line);
         }catch(e){return;}
         ans[record[by]] = record;
     })
@@ -21,8 +22,9 @@ fs.createReadStream(files[0])
         fs.createReadStream(files[1])
         .pipe(split())
         .on('data', function(line){
+            var record;
             try {
-                var record = JSON.parse(line);
+                record = JSON.parse(line);
             } catch(e){return;}
             var combined = ans[record[by]];
             if (combined !== undefined){

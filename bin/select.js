@@ -13,7 +13,7 @@ function getPath(thing, path){
         }
     });
     return thing;
-};
+}
 function setPath(dict, path, val){
     var last = path.pop();
     var next;
@@ -25,7 +25,7 @@ function setPath(dict, path, val){
         dict = dict[next];
     }
     dict[last] = val;
-};
+}
 
 var headers;
 process.stdin
