@@ -4,9 +4,16 @@
   "description": "Sort, grep and join files where every line is JSON.",
   "main": "index.js",
   "bin": {
-    "jline-chart": "chart.js",
-    "jline-csv": "csv.js",
-    "jline-cumulative": "cumulative.js"
+    "jline-chart":      "bin/chart.js",
+    "jline-csv":        "bin/csv.js",
+    "jline-cumulative": "bin/cumulative.js",
+    "jline-filter":     "bin/filter.js",
+    "jline-html":       "bin/html.js",
+    "jline-intersect":  "bin/intersect.js",
+    "jline-join-left":  "bin/join_left.js",
+    "jline-map":        "bin/map.js",
+    "jline-select":     "bin/select.js",
+    "jline-sort":       "bin/sort.js"
   },
   "scripts": {
     "test": "jshint bin/"
