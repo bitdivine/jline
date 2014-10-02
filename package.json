@@ -4,7 +4,9 @@
   "description": "Sort, grep and join files where every line is JSON.",
   "main": "index.js",
   "bin": {
-    "jline": "chart.js"
+    "jline-chart": "chart.js",
+    "jline-csv": "csv.js",
+    "jline-cumulative": "cumulative.js"
   },
   "scripts": {
     "test": "jshint bin/"
