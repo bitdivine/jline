@@ -1,17 +1,7 @@
 #!/usr/bin/env node
 
-function help(){
-    console.error
-    (["Sorts a file where each line is a JSON object by the provided key:"
-     ,"    cat data | jline-sort foo.bar # sorts by foo.bar"
-     ,"    cat data | jline-sort 'foo[\"key with spaces\"]'"
-     ,"    cat data | jline-sort '[2]'"
-     ].join("\n")
-    );
-}
-
 if ((process.argv[2] === undefined) || (process.argv[2] === '--help')) {
-    help();
+    console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
     process.exit(1);
 }
 
@@ -21,22 +11,16 @@ var by = process.argv[2]
   , lineNumber = 0;
 
 process.stdin
-.pipe(require('split')())
+.pipe(require('split')(JSON.parse))
 .on('data', function(line){
     lineNumber++;
-    if (line.charAt(0) === '{') {
-        try {
-            lines.push(JSON.parse(line));
-        }catch(e){
-            console.error('Skipping malformed line', lineNumber);
-        }
-    }
+    lines.push(line);
+})
+.on('error', function(e){
+    console.error("Malformed JSON on line", ++lineNumber, e);
 })
 .on('end', function(x){
     lines = lines.sort(function(a,b){return getPath(a)>getPath(b)?1:-1;});
     lines.forEach(function(line){console.log(JSON.stringify(line));});
 });
-
-
-
 

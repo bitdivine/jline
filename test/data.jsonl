@@ -1,5 +1,5 @@
-# This is not JSON and should be ignored
-{ "broken lines are likewise skipped"
+# comment
+{
 {"foo":{"bar":9,"bat":49},"mitz":"ding"}
 {"foo":{"bar":4,"bat":9},"mitz":"do"}
 {"foo":{"bar":6,"bat":17},"mitz":"mnogo"}
