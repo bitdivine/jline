@@ -1,0 +1,6 @@
+{"consumer":"startup"       , "apples":1,"oranges":1}
+{"consumer":"fashionshow"   , "apples":1,"oranges":-1}
+{"consumer":"smoothie"      , "apples":2,"oranges":0}
+{"consumer":"can't remember", "apples":3,"oranges":-1}
+{"consumer":""              , "apples":5,"oranges":-1}
+{                             "apples":8,"oranges":-2}

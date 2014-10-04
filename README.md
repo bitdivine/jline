@@ -29,6 +29,7 @@ Then:
 Use `--help` or refer to the markdown files:
 
 * [clean](./bin/clean.md)
+* [csv](./bin/csv.md)
 * [sort](./bin/sort.md)
 * [filter](./bin/filter.md)
 * [select](./bin/select.md)

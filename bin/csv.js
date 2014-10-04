@@ -4,7 +4,7 @@
 
 var by = process.argv[2];
 
-var jline = require('../index');
+var parseStream = require('./clean');
 
 function csvRecord(record){
     var json = JSON.stringify(record);
@@ -13,7 +13,7 @@ function csvRecord(record){
 
 function streamToCsv(stream){
     var headers;
-    return jline.parseStream(process.stdin)
+    return parseStream(stream)
     .on('jline', function(record){
         if (undefined === headers) {
             headers = Object.keys(record);
