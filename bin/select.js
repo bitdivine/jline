@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
-// Select the named fields from each record.
-// Usage: echo '{"a":1,"b":2,"c":3,"d":4,"e":5}' | select a e:vowel
-// yields: {"a"1,"vowel":5}
+if ((process.argv[2] === undefined) || (process.argv[2] === '--help')) {
+    console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
+    process.exit(2);
+}
 
+var parseStream = require('./clean');
 var fields = process.argv.slice(2).map(function(s){return s.split(':').map(function(s){return s.split('.');});});
 
 function getPath(thing, path){
@@ -28,21 +30,13 @@ function setPath(dict, path, val){
 }
 
 var headers;
-process.stdin
-.pipe(require('split')())
-.on('data', function(line){
-    if (line.charAt(0) === '{'){
-      try{
-        var record = JSON.parse(line);
+parseStream(process.stdin)
+.on('jline', function(record){
         var filtered = {};
         fields.forEach(function(field){
             var val = getPath(record, [].concat(field[0]));
             setPath(filtered, [].concat(field[field.length-1]), val);
         });
         console.log(JSON.stringify(filtered));
-      }catch(e){
-        console.error('Skipping malformed line');
-      }
-    }
 });
 
