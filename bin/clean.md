@@ -6,10 +6,7 @@ Select just those JSON lines that are well formed.
 ## Command line:
 
     cat test/data.jsonl | jline-clean
-
-Malformed lines are reported on stderr but can be ignored:
-
-    cat test/data.jsonl | jline-clean 2>/dev/null
+    cat test/data.jsonl | jline-clean 2>/dev/null || true # Ignore malformed lines
 
 ## Nodejs:
 
