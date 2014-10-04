@@ -28,9 +28,10 @@ Then:
 
 Use `--help` or refer to the markdown files:
 
-* [clean](./bin/clean.md)
-* [csv](./bin/csv.md)
-* [sort](./bin/sort.md)
-* [filter](./bin/filter.md)
-* [select](./bin/select.md)
+* [clean](./bin/clean.md) - keeps only well formed JSON lines
+* [csv](./bin/csv.md) - converts to csv
+* [filter](./bin/filter.md) - Keeps only the records you choose.
+* [parsePath](./bin/parsePath.md) `'abba.cadabba[4].u' -> ['abba','cadabba',4,'u']`
+* [sort](./bin/sort.md) - sorts by a given key.
+* [select](./bin/select.md) - Selects just a few fields from each record.
 
