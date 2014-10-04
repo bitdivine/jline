@@ -9,10 +9,6 @@ The JSON lines format is formally described at [http://jsonlines.org/](http://js
 
     npm install -g jline
 
-# Documentation
-
-use `--help`
-
 # Examples
 
 Assume a file `dat.jsonl` with lines:
@@ -26,8 +22,11 @@ Then:
     cat dat.jsonl | jline-sort foo.bar                        # Sorts on the key foo.bar
     cat dat.jsonl | jline-filter 'foo.bat>9'                  # Selects just those lines
     cat dat.jsonl | jline-select foo.bar:bar foo.bat:bat mitz # Returns lines such as {"bar":9,"bat":49,"mitz":"ding"}
+    ... etc
 
-# Commands
+# Documentation
+
+Use `--help` or refer to the markdown files:
 
 * [clean](./bin/clean.md)
 * [sort](./bin/sort.md)
