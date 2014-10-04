@@ -16,7 +16,7 @@
     "jline-sort": "bin/sort.js"
   },
   "scripts": {
-    "test": "./test/test.sh && jshint bin/",
+    "test": "jshint bin/ && ./test/_all.sh",
     "lint": "jshint bin/"
   },
   "repository": {

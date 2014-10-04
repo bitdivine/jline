@@ -1,18 +1,40 @@
 #!/usr/bin/env node
 
-if (process.argv[2] === '--help') {
-    console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
-    process.exit(1);
+function parseJlineStream(stream, options) {
+  options = options || {};
+  var logcode = {none:0, error:1, warn:2}[options.loglevel];
+  var diecode = {none:0, error:1, warn:2}[options.dielevel];
+  var log     = function(msg,code){console.error(message);};
+  log = options.log || log;
+
+  var lineNumber = 0;
+  return stream.pipe(require('split')())
+  .on('data', function(line){
+    lineNumber++;
+    try {
+        this.emit('record', JSON.parse(line), lineNumber, line);
+    } catch(e){
+      // Does it look like an error?
+      var serious = !/^\w*(#|$)/.test(line);
+      var code = serious?1:2;
+      var name = serious?'parseError':'parseWarn';
+      this.emit(name, e, lineNumber, line);
+      if (code <= logcode) log("Malformed JSON on line "+String(lineNumber)+" "+String(e));
+      if (code <= diecode) throw(e);
+    }
+  });
 }
 
-var lineNumber = 0;
-process.stdin
-.pipe(require('split')(JSON.parse))
-.on('data', function(line){
-    lineNumber++;
-    console.log(JSON.stringify(line));
-})
-.on('error', function(e){
-    console.error("Malformed JSON on line", ++lineNumber, e);
-});
+module.exports = parseJlineStream;
 
+if(require.main === module) {
+  if (process.argv[2] === '--help') {
+    console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
+    process.exit(1);
+  }
+  var exit = 0;
+  parseJlineStream(process.stdin)
+  .on('record', function(record, lineNumber, line){console.log(line);})
+  .on('parseError', function(e,n,l){console.error("Malformed JSON on line", n, e); exit = 1;})
+  .on('end', function(){process.exit(exit);});
+}

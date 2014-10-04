@@ -5,22 +5,21 @@ if ((process.argv[2] === undefined) || (process.argv[2] === '--help')) {
     process.exit(1);
 }
 
-var by = process.argv[2]
-  , getPath = new Function("x", "try { return x"+(by.charAt(0)==='['?by:'.'+by) + ";}catch(e){}")
-  , lines = []
-  , lineNumber = 0;
+var split     = require('split')
+  , parsePath = require('./parsePath')
+  , parseData = require('./clean')
+  , getPath   = require('tree-math').getPath;
 
-process.stdin
-.pipe(require('split')(JSON.parse))
-.on('data', function(line){
-    lineNumber++;
+var by = parsePath(process.argv[2]) // sort by this
+  , lines = [];
+
+
+parseData(process.stdin)
+.on('record', function(line){
     lines.push(line);
 })
-.on('error', function(e){
-    console.error("Malformed JSON on line", ++lineNumber, e);
-})
 .on('end', function(x){
-    lines = lines.sort(function(a,b){return getPath(a)>getPath(b)?1:-1;});
+    lines = lines.sort(function(a,b){return getPath(a, by)>getPath(b, by)?1:-1;});
     lines.forEach(function(line){console.log(JSON.stringify(line));});
 });
 
