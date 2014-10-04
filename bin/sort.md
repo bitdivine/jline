@@ -1,4 +1,4 @@
-jlines-sort
+jline-sort
 ===========
 
 Sorts a file where each line is a JSON object by the provided key:

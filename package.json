@@ -12,7 +12,7 @@
     "jline-intersect": "bin/intersect.js",
     "jline-join-left": "bin/join_left.js",
     "jline-map": "bin/map.js",
-    "jline-path": "bin/parsePath.js",
+    "jline-parsePath": "bin/parsePath.js",
     "jline-select": "bin/select.js",
     "jline-sort": "bin/sort.js"
   },
