@@ -1,45 +1,29 @@
 #!/usr/bin/env node
 
-function help(){
-    console.error
-    ([ "Filter JSON lines."
-     , ""
-     , "Simple usage:"
-     , "    echo '{\"bumble\":{\"bee\":99}}' | filter 'bumble.bee>3'"
-     , "    echo '{\"not\":\"here\"}'        | filter 'not !== \"there\"'"
-     , ""
-     , "Advanced usage:  Provide your own function that applies to each 'record':"
-     , "    echo '{\"bumble\":{\"bee\":99}}' | filter -f 'return Math.sin(record.bumble.bee) > 1;'"
-     ].join("\n")
-    );
-}
+var parseStream = require('./clean');
 
-if ((process.argv[2] === undefined) || (process.argv[2] === '--help')) {
-    help();
-    process.exit(1);
-}
-
-var code  = (process.argv[2] === '-f')
-          ? Function('record',process.argv[3])
-          : Function('record', 'return ('+(process.argv[2].replace(/(^|[^"'])\b([a-zA-Z_][a-zA-Z0-9]*)/g, '$1record.$2'))+');');
-
-var lineNumber = 0;
-
-process.stdin
-.pipe(require('split')())
-.on('data', function(line){
-    lineNumber++;
-    var record;
-    try {
-        record = JSON.parse(line);
-    }catch(e){
-        // Does it look as if it's meant to be JSON?
-        if (!/^\W+(#|$)/.test(line)) {
-            console.error('Skipping malformed line', lineNumber);
+function streamFilter(stream, code){
+    return parseStream(stream)
+    .on('jline', function(record, lineNumber, rawLine){
+        if (code(record)){
+            this.emit('filtered', record, lineNumber, rawLine);
         }
-    }
-    if(code(record)) {
-        console.log(JSON.stringify(record));
-    }
-});
+    });
+}
+
+module.exports = streamFilter; // trivial in node so probably won't be wanted.
+
+if(require.main === module) {
+  if ((process.argv[2] === undefined) || (process.argv[2] === '--help')) {
+    console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
+    process.exit(2);
+  }
+
+  var code  = (process.argv[2] === '-f')
+            ? process.argv[3]
+            : 'return ('+(process.argv[2].replace(/(^|[^"'.[])\b([a-zA-Z_][a-zA-Z0-9]*)/g, '$1record.$2'))+');';
+
+  streamFilter(process.stdin, Function('record',code))
+  .on('filtered', function(r,n,l){console.log(l)});
+}
 
