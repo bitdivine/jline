@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 
 if (process.argv[2] === '--help') {
     console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
