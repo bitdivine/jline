@@ -11,7 +11,7 @@ do if test -x "$file"
         tests="$((tests+1))"
         "./$file" >,out 2>,err && {
             rm -f ,out ,err || true
-            echo "$file OK" $?
+            echo "$file OK"
         } || {
             echo "$file FAILED with exit code" $?
             errors=$((errors+1))

@@ -4,7 +4,7 @@
 
 var by = process.argv[2];
 
-var parse = require('./clean');
+var jline = require('../index');
 
 function csvRecord(record){
     var json = JSON.stringify(record);
@@ -13,13 +13,13 @@ function csvRecord(record){
 
 function streamToCsv(stream){
     var headers;
-    parse(process.stdin)
-    .on('record', function(line){
-        if (!headers) {
+    return jline.parseStream(process.stdin)
+    .on('jline', function(record){
+        if (undefined === headers) {
             headers = Object.keys(record);
-            console.log(csvRecord(headers));
+            this.emit('csvHeader', csvRecord(headers));
         }
-        this.emit('csvrecord', csvRecord(headers.map(function(col){return record[col];})));
+        this.emit('csv', csvRecord(headers.map(function(col){return record[col];})));
     });
 }
 
@@ -29,12 +29,10 @@ module.exports.csvRecord = csvRecord;
 if(require.main === module) {
   if (process.argv[2] === '--help') {
     console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
-    process.exit(1);
+    process.exit(2);
   }
-  var exit = 0;
-  parseJlineStream(process.stdin)
-  .on('record', function(record, lineNumber, line){console.log(line);})
-  .on('parseError', function(e,n,l){console.error("Malformed JSON on line", n, e); exit = 1;})
-  .on('end', function(){process.exit(exit);});
+  streamToCsv(process.stdin)
+  .on('csvHeader', console.log)
+  .on('csv'      , console.log);
 }
 

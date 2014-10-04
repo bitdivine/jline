@@ -4,7 +4,7 @@ function parseJlineStream(stream, options) {
   options = options || {};
   var logcode = {none:0, error:1, warn:2}[options.loglevel];
   var diecode = {none:0, error:1, warn:2}[options.dielevel];
-  var log     = function(msg,code){console.error(message);};
+  var log     = function(msg,code){console.error(msg);};
   log = options.log || log;
 
   var lineNumber = 0;
@@ -12,7 +12,7 @@ function parseJlineStream(stream, options) {
   .on('data', function(line){
     lineNumber++;
     try {
-        this.emit('record', JSON.parse(line), lineNumber, line);
+        this.emit('jline', JSON.parse(line), lineNumber, line);
     } catch(e){
       // Does it look like an error?
       var serious = !/^\w*(#|$)/.test(line);
@@ -34,7 +34,7 @@ if(require.main === module) {
   }
   var exit = 0;
   parseJlineStream(process.stdin)
-  .on('record', function(record, lineNumber, line){console.log(line);})
+  .on('jline',      function(record, lineNumber, line){console.log(line);})
   .on('parseError', function(e,n,l){console.error("Malformed JSON on line", n, e); exit = 1;})
-  .on('end', function(){process.exit(exit);});
+  .on('end',        function(){process.exit(exit);});
 }

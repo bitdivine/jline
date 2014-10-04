@@ -12,4 +12,6 @@
     .on('parseError', function(error,  lineNumber, line){console.error("Malformed JSON on line", lineNumber, error);})
     .on('end',        function(){console.log("Finito!");});
 
-
+    stream = require('fs').createReadStream(__dirname+"/data.clean.jsonl");
+    parseJlineStream(stream, {loglevel:'warn', dielevel:'error'})
+    .on('jline',      function(parsed, lineNumber, line){console.log(parsed);});
