@@ -9,6 +9,10 @@ The JSON lines format is formally described at [http://jsonlines.org/](http://js
 
     npm install -g jline
 
+# Documentation
+
+use `--help`
+
 # Examples
 
 Assume a file `dat.jsonl` with lines:

@@ -30,7 +30,7 @@ module.exports = parseJlineStream;
 if(require.main === module) {
   if (process.argv[2] === '--help') {
     console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
-    process.exit(1);
+    process.exit(2);
   }
   var exit = 0;
   parseJlineStream(process.stdin)
