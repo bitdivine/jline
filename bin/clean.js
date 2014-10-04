@@ -5,7 +5,7 @@ function parseJlineStream(stream, options) {
   var logcode = {none:0, error:1, warn:2}[options.loglevel];
   var diecode = {none:0, error:1, warn:2}[options.dielevel];
   var log     = function(msg,code){console.error(msg);};
-  log = options.log || log;
+  log = options.logger || log;
 
   var lineNumber = 0;
   return stream.pipe(require('split')())

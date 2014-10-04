@@ -33,6 +33,6 @@ This emits a `jline` event for every correctly parsed JSON line:
 
 ### To scream if there are errors:
 
-    parseJlineStream(stream, {loglevel:'warn', dielevel:'error'})
+    parseJlineStream(stream, {loglevel:'warn', dielevel:'error', logger:console.error})
     .on('jline',      function(parsed, lineNumber, line){console.log(parsed);});
     
