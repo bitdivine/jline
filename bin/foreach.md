@@ -11,3 +11,5 @@ Execute a function for each JSON line.
 
     require("...")
 
+    jline-foreach 'BEGIN::{ssdfashdfg}' '(ND==4)::{whatever}' 'END::{sahfgasdf}'
+

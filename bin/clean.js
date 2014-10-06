@@ -8,11 +8,16 @@ function parseJlineStream(stream, options) {
   log = options.logger || log;
 
   var lineNumber = 0;
+  var recordNumber = 0;
+  var record;
+
   return stream.pipe(require('split')())
   .on('data', function(line){
     lineNumber++;
     try {
-        this.emit('jline', JSON.parse(line), lineNumber, line);
+        record = JSON.parse(line);
+        recordNumber++;
+        this.emit('jline', record, lineNumber, line, recordNumber);
     } catch(e){
       // Does it look like an error?
       var serious = !/^\w*(#|$)/.test(line);

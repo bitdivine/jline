@@ -7,10 +7,10 @@ if (process.argv[2] === '--help') {
     process.exit(2);
 }
 
-var code  = Function('record',process.argv[2]);
+var code  = Function('record', 'lineNumber', 'line', 'recordNumber', process.argv[2]);
 
 require('./clean')(process.stdin)
-.on('jline', function(record){
-    code(record);
+.on('jline', function(record, lineNumber, rawLine, recordNumber){
+    code(record, lineNumber, rawLine, recordNumber);
 });
 
