@@ -9,8 +9,7 @@ process.stdin
 .on('data', function(line){
     if (line.charAt(0) === '{'){
         var record = JSON.parse(line);
-        code(record);
-        console.log(JSON.stringify(record));
+        console.log(JSON.stringify(code(record)));
     }
 });
 
