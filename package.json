@@ -1,6 +1,6 @@
 {
   "name": "jline",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Sort, grep and join files where every line is JSON.",
   "main": "index.js",
   "bin": {
@@ -11,6 +11,7 @@
     "jline-filter": "bin/filter.js",
     "jline-html": "bin/html.js",
     "jline-intersect": "bin/intersect.js",
+    "jline-antijoin": "bin/antijoin.js",
     "jline-join-left": "bin/join_left.js",
     "jline-map": "bin/map.js",
     "jline-foreach": "bin/foreach.js",
