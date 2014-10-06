@@ -6,7 +6,9 @@ if ((process.argv[2] === undefined) || (process.argv[2] === '--help')) {
 }
 
 var parseStream = require('./clean');
-var fields = process.argv.slice(2).map(function(s){return s.split(':').map(function(s){return s.split('.');});});
+var parsePath   = require('./parsePath');
+var fields = process.argv.slice(2).map(function(s){return s.split(':').map(parsePath);});
+
 
 function getPath(thing, path){
     path.map(function(bit){

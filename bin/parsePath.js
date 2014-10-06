@@ -3,7 +3,7 @@
 var assert = require('assert');
 module.exports = function(s){
 	var bits = [];
-	var re = /(?:^|[.])([a-zA-Z0-9_]*)|\[\W*("(?:\\.|[^"])*")\W*\]|\[\W*([0-9]+)\W*\]/g;
+	var re = /(?:^|[.])([a-zA-Z0-9_]+)|\[\W*("(?:\\.|[^"])*")\W*\]|\[\W*([0-9]+)\W*\]/g;
 	var match;
 	var index = 0;
 	while(null !== (match = re.exec(s))){
