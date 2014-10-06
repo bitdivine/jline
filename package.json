@@ -1,9 +1,10 @@
 {
   "name": "jline",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Sort, grep and join files where every line is JSON.",
   "main": "index.js",
   "bin": {
+    "jline-clean": "bin/clean.js",
     "jline-chart": "bin/chart.js",
     "jline-csv": "bin/csv.js",
     "jline-cumulative": "bin/cumulative.js",
