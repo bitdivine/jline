@@ -39,7 +39,7 @@ if(require.main === module) {
   }
   var exit = 0;
   parseJlineStream(process.stdin)
-  .on('jline',      function(record, lineNumber, line){console.log(line);})
+  .on('jline',      function(record, lineNumber, line, recordNumber){console.log(line);})
   .on('parseError', function(e,n,l){console.error("Malformed JSON on line", n, e); exit = 1;})
   .on('end',        function(){process.exit(exit);});
 }
