@@ -6,8 +6,8 @@ Execute a function for each JSON line.  This is roughly equivalent to gawk for J
 ## Command line:
 
     echo '{"this":24, "that":99}' | jline-foreach "console.log(record.this * record.that);"
-    echo '{"a":5}' | ./bin/foreach.js 'sum += record.a;' 'end::console.log(sum);' 'beginning::GLOBAL.sum=0;'
-    echo '{"a":"man"}' | ./bin/foreach.js 'console.log(require("fs").readFileSync(record.a));'
+    echo '{"a":5}' | jline-foreach 'sum += record.a;' 'end::console.log(sum);' 'beginning::GLOBAL.sum=0;'
+    echo '{"a":"man"}' | jline-foreach 'console.log(require("fs").readFileSync(record.a));'
 
 ### Code
 
