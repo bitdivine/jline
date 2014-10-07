@@ -3,7 +3,7 @@ jline
 
 Sort, grep and join files where every line is JSON.  JSON has long surpassed CSV as the most common, useful and robust format in much of the code that I encounter but as yet it has no parallel to the array of fine tuned command line tools that target CSV.  This collection fills some of the gaps.
 
-The JSON lines format is formally described at [http://jsonlines.org/](http://jsonlines.org/).
+The JSON lines format is formally described at [http://jsonlines.org/](http://jsonlines.org/).  Other pages of interest are [Wikipedia](https://en.wikipedia.org/wiki/Line_Delimited_JSON) and [Newline Delimited JSON](http://trephine.org/t/index.php?title=Newline_delimited_JSON).
 
 # Installation
 
