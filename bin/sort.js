@@ -15,7 +15,7 @@ var by = parsePath(process.argv[2]) // sort by this
 
 
 parseData(process.stdin)
-.on('record', function(line){
+.on('jline', function(line){
     lines.push(line);
 })
 .on('end', function(x){
