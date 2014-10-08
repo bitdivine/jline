@@ -2,14 +2,19 @@
 
 // Apply a function to each record.
 
-var code  = Function('record',process.argv[2]);
+if (process.argv[2] === '--help') {
+    console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
+    process.exit(2);
+}
 
-process.stdin
-.pipe(require('split')())
-.on('data', function(line){
-    if (line.charAt(0) === '{'){
-        var record = JSON.parse(line);
-        console.log(JSON.stringify(code(record)));
-    }
+var codes  = process.argv.slice(2).map(function(arg){
+    return Function('require','record','lineNumber','line','recordNumber',arg);
 });
+function map(record, lineNumber, line, recordNumber){
+    codes.forEach(function(code){code(require, record, lineNumber, line, recordNumber);});
+    console.log(JSON.stringify(record));
+}
+
+require('./clean')(process.stdin)
+.on('jline', map);
 
