@@ -23,7 +23,7 @@ eventHandlers.forEach(function(tuple){
     var event = tuple[0].toLowerCase();
     var code  = Function('require', 'record', 'lineNumber', 'line', 'recordNumber', tuple[1]).bind(null,require);
     code.name = event;
-    if (event === 'beginning') code();
+    if (['beg','begin','start','beginning'].indexOf(event)!== -1) code();
     else source.on(event, code);
 });
 

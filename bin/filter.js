@@ -21,7 +21,11 @@ if(require.main === module) {
 
   var code  = (process.argv[2] === '-f')
             ? process.argv[3]
-            : 'return ('+(process.argv[2].replace(/(^|[^"'.[])\b([a-zA-Z_][a-zA-Z0-9]*)/g, '$1record.$2'))+');';
+            : 'return ('
+              + process.argv.slice(2).map(function(s){
+                 return '('+s.replace(/(^|[^"'.[])\b([a-zA-Z_][a-zA-Z0-9]*)/g, '$1record.$2')+')';
+               }).join('&&')
+              +');';
 
   streamFilter(process.stdin, Function('record',code))
   .on('filtered', function(r,n,l){console.log(l);});
