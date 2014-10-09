@@ -28,11 +28,17 @@ Then:
 
 Use `--help` or refer to the markdown files:
 
+### Manipulate jlines
 * [clean](./bin/clean.md) - keeps only well formed JSON lines
-* [csv](./bin/csv.md) - converts to csv
 * [filter](./bin/filter.md) - Keeps only the records you choose.
 * [parsePath](./bin/parsePath.md) `'abba.cadabba[4].u' -> ['abba','cadabba',4,'u']`
 * [sort](./bin/sort.md) - sorts by a given key.
 * [select](./bin/select.md) - Selects just a few fields from each record.
-* [pretty](./bin/pretty.md) - Pretty prints the JSON.
+
+### Power Tools
+* [map](./bin/map.md) - Execute arbitrary code for each record and print the updated record.
 * [foreach](./bin/foreach.md) - Execute arbitrary code for each record.  Awk for JSON lines.
+
+### Output
+* [pretty](./bin/pretty.md) - Pretty prints the JSON.
+* [csv](./bin/csv.md) - converts to csv

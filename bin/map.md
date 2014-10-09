@@ -28,5 +28,5 @@ To demonstrate we will apply the filter to just one line:
 
 ### See also
 
-For a more general and more powerful alternative, see `json-foreach`.
+For a more general and more powerful alternative, see [`json-foreach`](foreach.md).
 
