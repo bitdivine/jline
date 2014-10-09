@@ -13,7 +13,7 @@ Execute a function for each JSON line.  This is roughly equivalent to gawk for J
 
 Each argument is of the form: "event::code".  If the event is omitted it is assumed to be `jline`.  Others are:
 
-* `beginning`
+* `beginning`/`beg`/`begin`
 
 * `end`
 
