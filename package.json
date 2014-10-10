@@ -19,7 +19,7 @@
     "jline-parsePath": "bin/parsePath.js",
     "jline-select": "bin/select.js",
     "jline-sort": "bin/sort.js",
-    "jline-mysql2jla"" "bin/mysql2jla.sh"
+    "jline-mysql2jla": "bin/mysql2jla.sh"
   },
   "scripts": {
     "test": "jshint bin/ && ./test/_all.sh",
