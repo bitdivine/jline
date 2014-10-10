@@ -31,37 +31,85 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <p>Sort, grep and join files where every line is JSON.  JSON has long surpassed CSV as the most common, useful and robust format in much of the code that I encounter but as yet it has no parallel to the array of fine tuned command line tools that target CSV.  This collection fills some of the gaps.</p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>The JSON lines format is formally described at <a href="http://jsonlines.org/">http://jsonlines.org/</a>.  Other pages of interest are <a href="https://en.wikipedia.org/wiki/Line_Delimited_JSON">Wikipedia</a> and <a href="http://trephine.org/t/index.php?title=Newline_delimited_JSON">Newline Delimited JSON</a>.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<h1>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<pre><code>npm install -g jline
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h1>
+<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h1>
+
+<p>Assume a file <code>dat.jsonl</code> with lines:</p>
+
+<pre><code>{"foo":{"bar":9,"bat":49},"mitz":"ding"}
+{"foo":{"bar":4,"bat":9},"mitz":"do"}
+{"foo":{"bar":6,"bat":17},"mitz":"mnogo"}
+</code></pre>
+
+<p>Then:</p>
+
+<pre><code>cat dat.jsonl | jline-sort foo.bar                        # Sorts on the key foo.bar
+cat dat.jsonl | jline-filter 'foo.bat&gt;9'                  # Selects just those lines
+cat dat.jsonl | jline-select foo.bar:bar foo.bat:bat mitz # Returns lines such as {"bar":9,"bat":49,"mitz":"ding"}
+... etc
+</code></pre>
+
+<h1>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h1>
+
+<p>Use <code>--help</code> or refer to the markdown files:</p>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="manipulate-jlines" class="anchor" href="#manipulate-jlines"><span class="octicon octicon-link"></span></a>Manipulate jlines</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<ul>
+<li>
+<a href="./bin/clean.md">clean</a> - keeps only well formed JSON lines</li>
+<li>
+<a href="./bin/filter.md">filter</a> - Keeps only the records you choose.</li>
+<li>
+<a href="./bin/parsePath.md">parsePath</a> <code>'abba.cadabba[4].u' -&gt; ['abba','cadabba',4,'u']</code>
+</li>
+<li>
+<a href="./bin/sort.md">sort</a> - sorts by a given key.</li>
+<li>
+<a href="./bin/select.md">select</a> - Selects just a few fields from each record.</li>
+</ul>
 
 <h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<a name="power-tools" class="anchor" href="#power-tools"><span class="octicon octicon-link"></span></a>Power Tools</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<ul>
+<li>
+<a href="./bin/map.md">map</a> - Execute arbitrary code for each record and print the updated record.</li>
+<li>
+<a href="./bin/foreach.md">foreach</a> - Execute arbitrary code for each record.  Awk for JSON lines.</li>
+</ul>
 
 <h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<a name="output" class="anchor" href="#output"><span class="octicon octicon-link"></span></a>Output</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<ul>
+<li>
+<a href="./bin/pretty.md">pretty</a> - Pretty prints the JSON.</li>
+<li>
+<a href="./bin/csv.md">csv</a> - converts to csv</li>
+</ul>
 
 <h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a name="input" class="anchor" href="#input"><span class="octicon octicon-link"></span></a>Input</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<ul>
+<li>
+<a href="bin/mysql2jl.md">jline-mysql2jl</a> - EXPERIMENTAL - mysql output to JSON dictionaries</li>
+<li>
+<a href="bin/mysql2jla.md">jline-mysql2jla</a> - EXPERIMENTAL - mysql output to JSON arrays</li>
+</ul>
       </section>
     </div>
 
