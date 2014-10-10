@@ -44,4 +44,5 @@ Use `--help` or refer to the markdown files:
 * [csv](./bin/csv.md) - converts to csv
 
 ### Input
+* [jline-mysql2jl](bin/mysql2jl.md) - EXPERIMENTAL - mysql output to JSON dictionaries
 * [jline-mysql2jla](bin/mysql2jla.md) - EXPERIMENTAL - mysql output to JSON arrays
