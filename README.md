@@ -42,3 +42,6 @@ Use `--help` or refer to the markdown files:
 ### Output
 * [pretty](./bin/pretty.md) - Pretty prints the JSON.
 * [csv](./bin/csv.md) - converts to csv
+
+### Input
+* [jline-mysql2jla](bin/mysql2jla.md) - EXPERIMENTAL - mysql output to JSON arrays
