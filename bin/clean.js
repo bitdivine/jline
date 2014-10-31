@@ -18,12 +18,14 @@ function parseJlineStream(stream, options) {
         record = JSON.parse(line);
         recordNumber++;
         this.emit('jline', record, lineNumber, line, recordNumber);
+        this.emit('line',  record, lineNumber, line, recordNumber);
     } catch(e){
       // Does it look like an error?
       var serious = !/^\w*(#|$)/.test(line);
       var code = serious?1:2;
       var name = serious?'parseError':'parseWarn';
       this.emit(name, e, lineNumber, line);
+      this.emit('line', e, lineNumber, line);
       if (code <= logcode) log("Malformed JSON on line "+String(lineNumber)+" "+String(e));
       if (code <= diecode) throw(e);
     }

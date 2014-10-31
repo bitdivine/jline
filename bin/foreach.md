@@ -19,6 +19,8 @@ Each argument is of the form: "event::code".  If the event is omitted it is assu
 
 * `error`
 
+* `line` - any line, well formed or not.
+
 The only way to share variables between separate chunks of code is to declare them global.
 
 
