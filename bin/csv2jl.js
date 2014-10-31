@@ -12,11 +12,12 @@ if(require.main === module) {
         'separator': ',',
         'quote': '"',
         'escape': '"',       
-        'comment': '',
+        'comment': '#',
     });
     var writer = csv.createCsvStreamWriter(process.stdout);
     var header = null;
     reader.addListener('data', function(data) {
+        if ((!data)||(data.length===0)||((data.length===1)&&(data[0]===""))) return;
         if (header === null){
             header = data;
         } else {
