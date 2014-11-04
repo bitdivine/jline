@@ -31,8 +31,15 @@ fs.createReadStream(files[0])
             if (left !== undefined){
                 var combined = {};
                 Object.keys(record).forEach(function(k){
-                    if (undefined !== left[k]){
+                    if (undefined === left[k]){
+                        combined[k] = '>';
+                    }else{
                         combined[k] = [left[k],record[k]];
+                    }
+                });
+                Object.keys(left).forEach(function(k){
+                    if (undefined === combined[k]){
+                        combined[k] = '<';
                     }
                 });
                 ans[record[by]] = combined;

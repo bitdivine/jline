@@ -14,9 +14,9 @@ var fields = process.argv.slice(2).map(function(s){
 
 function castFun(s){
     switch(s){
-    case 'int': return function(x){if ((x === undefined)||(x === null)) return x; return parseInt(x);}
-    case 'str': return function(x){if ((x === undefined)||(x === null)) return x; return String(x);}
-    case 'num': return function(x){if ((x === undefined)||(x === null)) return x; return Number(x);}
+    case 'int': return function(x){if ((x === undefined)||(x === null)) return x; return parseInt(x);};
+    case 'str': return function(x){if ((x === undefined)||(x === null)) return x; return String(x);};
+    case 'num': return function(x){if ((x === undefined)||(x === null)) return x; return Number(x);};
     default:    throw new Error("Unsupported type: "+String(s));
     }
 }
