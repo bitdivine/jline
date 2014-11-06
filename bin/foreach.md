@@ -36,3 +36,7 @@ The preset variables are:
 
 * `error` - (when handling an error event)
 
+All standard nodejs functions are available and in addition:
+
+* `emit(data)` - emits a JSON line on stdout.
+

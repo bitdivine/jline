@@ -17,11 +17,14 @@ process.argv.slice(2).forEach(function(arg){
     }
 });
 
+function emit(data){
+    console.log(JSON.stringify(data));
+}
 
 var source = require('./clean')(process.stdin);
 eventHandlers.forEach(function(tuple){
     var event = tuple[0].toLowerCase();
-    var code  = Function('require', 'record', 'lineNumber', 'line', 'recordNumber', tuple[1]).bind(null,require);
+    var code  = Function('require', 'emit', 'record', 'lineNumber', 'line', 'recordNumber', tuple[1]).bind(null,require, emit);
     code.name = event;
     if (['beg','begin','start','beginning'].indexOf(event)!== -1) code();
     else source.on(event, code);
