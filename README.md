@@ -41,6 +41,7 @@ Use `--help` or refer to the markdown files:
 * [parsePath](./bin/parsePath.md) `'abba.cadabba[4].u' -> ['abba','cadabba',4,'u']`
 * [sort](./bin/sort.md) - sorts by a given key.
 * [select](./bin/select.md) - Selects just a few fields from each record.
+* breakdown [by](./bin/by.md) - Sums fields by a breakdown.
 
 ### Power Tools
 * [map](./bin/map.md) - Execute arbitrary code for each record and print the updated record.
