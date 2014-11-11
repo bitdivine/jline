@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// Generate an HTML file containing a chart rendered with nvd3.
+// Sorts a file where each line is a JSON object by the provided key:
 
 var fs = require('fs');
 var html = fs.readFileSync(__dirname+'/chart.html', {encoding:'utf8'});

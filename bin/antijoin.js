@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-// Sorts a file where each line is a JSON object by the provided key:
+// Find records in the second file that have no counterpart in the first.
 
 var by    = process.argv[2]
   , files = process.argv.slice(3)
   , fs    = require('fs')
   , split = require('split');
 
-var ans = {};
+var blacklist = {};
 
 fs.createReadStream(files[0])
     .pipe(split())
@@ -16,11 +16,9 @@ fs.createReadStream(files[0])
         try{
             record = JSON.parse(line);
         }catch(e){return;}
-        ans[record[by]] = record;
+        blacklist[record[by]] = record;
     })
     .on('end', function(){
-        var survivors = ans;
-        ans = {};
         fs.createReadStream(files[1])
         .pipe(split())
         .on('data', function(line){
@@ -28,7 +26,7 @@ fs.createReadStream(files[0])
             try {
                 record = JSON.parse(line);
             } catch(e){return;}
-            var combined = survivors[record[by]];
+            var combined = blacklist[record[by]];
             if (combined === undefined){
                 console.log(line);
             }
