@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
-// Sorts a file where each line is a JSON object by the provided key:
+if ((process.argv[2] === undefined) || (process.argv[2] === '--help')) {
+    console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
+    process.exit(1);
+}
 
 var fs = require('fs');
 var html = fs.readFileSync(__dirname+'/chart.html', {encoding:'utf8'});
