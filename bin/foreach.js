@@ -18,7 +18,9 @@ process.argv.slice(2).forEach(function(arg){
 });
 
 // "builtin" functions.
-var req = require('../lib/require-from-cwd');
+function req(name){
+        return require(name, {});
+}
 
 function emit(data){
     console.log(JSON.stringify(data));
