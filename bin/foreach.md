@@ -40,3 +40,6 @@ All standard nodejs functions are available and in addition:
 
 * `emit(data)` - emits a JSON line on stdout.
 
+* `require(path)` - looks in the current working directory first for relative paths.
+
+* `keyvals(dict, callback(key,val))` - iterates over a dictionary.

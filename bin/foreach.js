@@ -17,14 +17,22 @@ process.argv.slice(2).forEach(function(arg){
     }
 });
 
+// "builtin" functions.
+var req = require('../lib/require-from-cwd');
+
 function emit(data){
     console.log(JSON.stringify(data));
+}
+
+function keyvals(dict, callback){
+    Object.keys(dict).forEach(function(k){callback(k,dict[k]);});
 }
 
 var source = require('./clean')(process.stdin);
 eventHandlers.forEach(function(tuple){
     var event = tuple[0].toLowerCase();
-    var code  = Function('require', 'emit', 'record', 'lineNumber', 'line', 'recordNumber', tuple[1]).bind(null,require, emit);
+    var code  = Function('require','emit','keyvals', 'record', 'lineNumber', 'line', 'recordNumber', tuple[1])
+               .bind(null,req,      emit,  keyvals);
     code.name = event;
     if (['beg','begin','start','beginning'].indexOf(event)!== -1) code();
     else source.on(event, code);
