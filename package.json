@@ -1,6 +1,6 @@
 {
   "name": "jline",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "description": "Sort, grep and join files where every line is JSON.",
   "main": "index.js",
   "bin": {
@@ -25,7 +25,9 @@
     "jline-csv2jl": "bin/csv2jl.js",
     "jline-csv2jla": "bin/csv2jla.js",
     "jline-mysql2jl": "bin/mysql2jl.sh",
-    "jline-mysql2jla": "bin/mysql2jla.sh"
+    "jline-mysql2jla": "bin/mysql2jla.sh",
+    "jline-numper": "util/numper.js",
+    "jline-sumper": "util/sumper.js"
   },
   "scripts": {
     "test": "jshint bin/ && ./test/_all.sh",
