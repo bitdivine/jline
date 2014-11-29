@@ -27,6 +27,6 @@ if(require.main === module) {
         process.exit(1);
     }
 
-    console.log(module.exports(process.argv[2]));
+    console.log(JSON.stringify(module.exports(process.argv[2])));
 }
 
