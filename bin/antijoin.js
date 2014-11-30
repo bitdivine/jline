@@ -1,9 +1,13 @@
 #!/usr/bin/env node
 
-// Find records in the second file that have no counterpart in the first.
+var args = require('../lib/opt').parse({filename:__filename, usage:
+[ 'Usage: jline-antijoin (--help|--version)'
+, '       jline-antijoin <join_key> <file1> <file2>'
+].join("\n")});
+process.stdout.on('error',process.exit);
 
-var by    = process.argv[2]
-  , files = process.argv.slice(3)
+var by    = args['<join_key>']
+  , files = [args['<file1>'], args['<file1>']]
   , fs    = require('fs')
   , split = require('split');
 

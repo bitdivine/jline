@@ -2,10 +2,10 @@
 
 // Execute some code for each record.
 
-if (process.argv[2] === '--help') {
-    console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
-    process.exit(2);
-}
+require('../lib/opt').parse({filename:__filename, usage:
+[ 'Usage: jline-foreach [--help|--version]'
+, '       jline-foreach <cmd>...'
+].join("\n")});
 process.stdout.on('error',process.exit);
 
 var eventHandlers = [];
