@@ -1,6 +1,6 @@
 {
   "name": "jline",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "Sort, grep and join files where every line is JSON.",
   "main": "index.js",
   "bin": {
@@ -30,8 +30,8 @@
     "jline-sumper": "util/sumper.js"
   },
   "scripts": {
-    "test": "jshint bin/ && ./test/_all.sh",
-    "lint": "jshint bin/"
+    "test": "jshint bin/ lib/ && ./test/_all.sh",
+    "lint": "jshint bin/ lib/"
   },
   "repository": {
     "type": "git",
@@ -56,6 +56,7 @@
   },
   "homepage": "https://github.com/bitdivine/jline",
   "dependencies": {
+    "docopt": "^0.4.1",
     "split": "^0.3.0",
     "tree-math": "0.0.3",
     "ya-csv": "^0.9.4"
