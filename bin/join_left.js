@@ -7,6 +7,8 @@ var by    = process.argv[2]
   , fs    = require('fs')
   , split = require('split');
 
+process.stdout.on('error',process.exit);
+
 var ans = {};
 
 fs.createReadStream(files[0])

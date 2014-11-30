@@ -6,6 +6,7 @@ if (process.argv[2] === '--help') {
     console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
     process.exit(2);
 }
+process.stdout.on('error',process.exit);
 
 var eventHandlers = [];
 process.argv.slice(2).forEach(function(arg){

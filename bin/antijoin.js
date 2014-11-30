@@ -9,6 +9,8 @@ var by    = process.argv[2]
 
 var blacklist = {};
 
+process.stdout.on('error',process.exit);
+
 fs.createReadStream(files[0])
     .pipe(split())
     .on('data', function (line) {

@@ -5,6 +5,8 @@ if ((process.argv[2] === undefined) || (process.argv[2] === '--help')) {
     process.exit(1);
 }
 
+process.stdout.on('error',process.exit);
+
 var split     = require('split')
   , parsePath = require('./parsePath')
   , parseData = require('./clean')

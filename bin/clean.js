@@ -39,6 +39,7 @@ if(require.main === module) {
     console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
     process.exit(2);
   }
+  process.stdout.on('error',process.exit);
   var exit = 0;
   parseJlineStream(process.stdin)
   .on('jline',      function(record, lineNumber, line, recordNumber){console.log(line);})

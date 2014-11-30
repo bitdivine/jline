@@ -10,6 +10,8 @@ var code  = function(record){
     keys.forEach(function(k){record[rename[k]] = values[k] += record[k];});
 };
 
+process.stdout.on('error',process.exit);
+
 process.stdin
 .pipe(require('split')())
 .on('data', function(line){

@@ -5,6 +5,8 @@ if ((process.argv[2] === undefined) || (process.argv[2] === '--help')) {
     process.exit(1);
 }
 
+process.stdout.on('error',process.exit);
+
 var fs = require('fs');
 var html = fs.readFileSync(__dirname+'/chart.html', {encoding:'utf8'});
 var format = require('./format');

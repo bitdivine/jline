@@ -31,6 +31,7 @@ if(require.main === module) {
     console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
     process.exit(2);
   }
+  process.stdout.on('error',process.exit);
   streamToCsv(process.stdin)
   .on('csvHeader', console.log)
   .on('csv'      , console.log);
