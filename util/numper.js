@@ -9,7 +9,7 @@ path="$(jline-parsePath "$1" | jline-foreach 'console.log(record.map(function(a)
 echo "Collecting $path" >&2
 
 jline-foreach \
-'start::global.a = new(require("numper"))({interval:1000});a.on("aggregate", emit)' \
+'start::global.a = new(require("numper"))({interval:1000});global.ksort=require("tree-math").ksort;a.on("aggregate", function(d){d.counts=ksort(d.counts);emit(d);})' \
 "jline::a.increment(record$path,1)"
 
 
