@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
 // Apply a function to each record.
+var args = require('../lib/opt').fancy({filename:__filename, usage:
+[ 'Usage: jline-foreach [--help|--version]'
+, '       jline-foreach <cmd>...'
+].join("\n")});
 
-if (process.argv[2] === '--help') {
-    console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
-    process.exit(2);
-}
-
-var codes  = process.argv.slice(2).map(function(arg){
+var codes  = args['<cmd>'].map(function(arg){
     return Function('require','record','lineNumber','line','recordNumber',arg);
 });
 function map(record, lineNumber, line, recordNumber){
@@ -15,8 +14,6 @@ function map(record, lineNumber, line, recordNumber){
     console.log(JSON.stringify(record));
 }
 
-process.stdout.on('error',process.exit);
-console.log.apply(null,['#'].concat(process.argv));
 require('./clean')(process.stdin)
 .on('jline', map);
 
