@@ -8,10 +8,10 @@
 
     parseJlineStream(stream)
     .on('record',     function(parsed, lineNumber, line){console.log(parsed);})
-    .on('parseWarn',  function(error,  lineNumber, line){console.error("Comment or blank line on line", lineNumber);})
+    .on('comment',    function(comment,lineNumber, line){console.error("Comment or blank line on line", lineNumber);})
     .on('parseError', function(error,  lineNumber, line){console.error("Malformed JSON on line", lineNumber, error);})
     .on('end',        function(){console.log("Finito!");});
 
-    stream = require('fs').createReadStream(__dirname+"/data.clean.jsonl");
-    parseJlineStream(stream, {loglevel:'warn', dielevel:'error'})
-    .on('jline',      function(parsed, lineNumber, line){console.log(parsed);});
+//    stream = require('fs').createReadStream(__dirname+"/data.clean.jsonl");
+//    parseJlineStream(stream, {loglevel:'warn', dielevel:'error'})
+//    .on('jline',      function(parsed, lineNumber, line){console.log(parsed);});

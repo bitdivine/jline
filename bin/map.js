@@ -16,6 +16,7 @@ function map(record, lineNumber, line, recordNumber){
 }
 
 process.stdout.on('error',process.exit);
+console.log.apply(null,['#'].concat(process.argv));
 require('./clean')(process.stdin)
 .on('jline', map);
 

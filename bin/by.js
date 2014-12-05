@@ -7,6 +7,7 @@ if ((process.argv[2] === undefined) || (process.argv[2] === '--help') || (divide
 }
 
 process.stdout.on('error',process.exit);
+console.log.apply(null,['#'].concat(process.argv));
 
 var parseStream   = require('./clean')
   , parsePath     = require('./parsePath')

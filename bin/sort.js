@@ -1,22 +1,21 @@
 #!/usr/bin/env node
 
-if ((process.argv[2] === undefined) || (process.argv[2] === '--help')) {
-    console.error(require('fs').readFileSync(__filename.replace(/.js$/,'.md'),{encoding:'utf8'}));
-    process.exit(1);
-}
-
-process.stdout.on('error',process.exit);
+var args = require('../lib/opt').fancy({filename:__filename, usage:
+[ 'Usage: jline-sort [--help|--version]'
+, '       jline-sort <key>'
+].join("\n")});
 
 var split     = require('split')
   , parsePath = require('./parsePath')
   , parseData = require('./clean')
   , getPath   = require('tree-math').getPath;
 
-var by = parsePath(process.argv[2]) // sort by this
+var by = parsePath(args['<key>']) // sort by this
   , lines = [];
 
 
 parseData(process.stdin)
+.on('comment', function(c){console.log(c);})
 .on('jline', function(line){
     lines.push(line);
 })

@@ -8,6 +8,7 @@ var by    = process.argv[2]
   , split = require('split');
 
 process.stdout.on('error',process.exit);
+console.log.apply(null,['#'].concat(process.argv));
 
 var lefts = {};
 var ans = {};

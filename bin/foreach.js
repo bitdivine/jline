@@ -2,11 +2,10 @@
 
 // Execute some code for each record.
 
-require('../lib/opt').parse({filename:__filename, usage:
+require('../lib/opt').fancy({filename:__filename, usage:
 [ 'Usage: jline-foreach [--help|--version]'
 , '       jline-foreach <cmd>...'
 ].join("\n")});
-process.stdout.on('error',process.exit);
 
 var eventHandlers = [];
 process.argv.slice(2).forEach(function(arg){
@@ -32,6 +31,7 @@ function keyvals(dict, callback){
 }
 
 var source = require('./clean')(process.stdin);
+source.on('comment', function(c){console.log(c);});
 eventHandlers.forEach(function(tuple){
     var event = tuple[0].toLowerCase();
     var code  = Function('require','emit','keyvals', 'record', 'lineNumber', 'line', 'recordNumber', tuple[1])

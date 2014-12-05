@@ -8,6 +8,7 @@ if(require.main === module) {
     }
 
     process.stdout.on('error',process.exit);
+    console.log.apply(null,['#'].concat(process.argv));
 
     var csv = require('ya-csv');
     var reader = csv.createCsvStreamReader(process.openStdin(), {

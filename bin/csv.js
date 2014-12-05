@@ -32,6 +32,7 @@ if(require.main === module) {
     process.exit(2);
   }
   process.stdout.on('error',process.exit);
+  console.log.apply(null,['#'].concat(process.argv));
   streamToCsv(process.stdin)
   .on('csvHeader', console.log)
   .on('csv'      , console.log);

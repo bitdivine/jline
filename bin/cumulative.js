@@ -11,6 +11,7 @@ var code  = function(record){
 };
 
 process.stdout.on('error',process.exit);
+console.log.apply(null,['#'].concat(process.argv));
 
 process.stdin
 .pipe(require('split')())

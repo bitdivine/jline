@@ -8,6 +8,7 @@ if (process.argv[2] === '--help') {
 }
 
 process.stdout.on('error',process.exit);
+console.log.apply(null,['#'].concat(process.argv));
 
 require('./clean')(process.stdin)
 .on('jline', function(record){

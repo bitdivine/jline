@@ -19,6 +19,7 @@ if(require.main === module) {
     process.exit(2);
   }
   process.stdout.on('error',process.exit);
+  console.log.apply(null,['#'].concat(process.argv));
 
   var code  = (process.argv[2] === '-f')
             ? process.argv[3]

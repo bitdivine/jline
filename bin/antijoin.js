@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 
-var args = require('../lib/opt').parse({filename:__filename, usage:
+var args = require('../lib/opt').fancy({filename:__filename, usage:
 [ 'Usage: jline-antijoin (--help|--version)'
 , '       jline-antijoin <join_key> <file1> <file2>'
 ].join("\n")});
-process.stdout.on('error',process.exit);
 
 var by    = args['<join_key>']
   , files = [args['<file1>'], args['<file1>']]
