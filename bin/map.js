@@ -3,7 +3,7 @@
 // Apply a function to each record.
 var args = require('../lib/opt').fancy({filename:__filename, usage:
 [ 'Usage: jline-foreach [--help|--version]'
-, '       jline-foreach <cmd>...'
+, '       jline-foreach [-l] <cmd>...'
 ].join("\n")});
 
 var codes  = args['<cmd>'].map(function(arg){

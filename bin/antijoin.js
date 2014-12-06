@@ -2,7 +2,7 @@
 
 var args = require('../lib/opt').fancy({filename:__filename, usage:
 [ 'Usage: jline-antijoin (--help|--version)'
-, '       jline-antijoin <join_key> <file1> <file2>'
+, '       jline-antijoin [-l] <join_key> <file1> <file2>'
 ].join("\n")});
 
 var by    = args['<join_key>']

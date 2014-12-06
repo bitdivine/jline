@@ -4,7 +4,7 @@
 
 require('../lib/opt').fancy({filename:__filename, usage:
 [ 'Usage: jline-foreach [--help|--version]'
-, '       jline-foreach <cmd>...'
+, '       jline-foreach [-l] <cmd>...'
 ].join("\n")});
 
 var eventHandlers = [];

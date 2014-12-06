@@ -2,7 +2,7 @@
 
 var args = require('../lib/opt').fancy({filename:__filename, usage:
 [ 'Usage: jline-sort [--help|--version]'
-, '       jline-sort <key>'
+, '       jline-sort [-l] <key>'
 ].join("\n")});
 
 var split     = require('split')

@@ -37,7 +37,11 @@ function parseJlineStream(stream, options) {
 module.exports = parseJlineStream;
 
 if(require.main === module) {
-  require('../lib/opt').fancy({filename:__filename});
+  require('../lib/opt').fancy({filename:__filename, usage:
+  [ 'Usage: jline-foreach [--help|--version]'
+  , '       jline-foreach [-l]'
+  ].join("\n")});
+
   var exit = 0;
   parseJlineStream(process.stdin)
   .on('jline',      function(record,  lineNumber, line, recordNumber){console.log(line);})
