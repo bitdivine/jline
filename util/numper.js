@@ -5,8 +5,6 @@
 # Usage:
 # cat your.jlines | jline-numper
 
-set -x
-
 path="$(jline-parsePath "$1" | jline-foreach 'console.log(record.map(function(a){return JSON.stringify([a]);}).join(""))')"
 echo "Collecting $path" >&2
 
