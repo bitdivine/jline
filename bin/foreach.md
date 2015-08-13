@@ -43,3 +43,11 @@ All standard nodejs functions are available and in addition:
 * `require(path)` - looks in the current working directory first for relative paths.
 
 * `keyvals(dict, callback(key,val))` - iterates over a dictionary.
+
+* `setpath(dict, [x1,x2,x3,...],val)` - sets `dict.x1.x2.x3=val`, creating any intermediate objects as necessary.
+
+* `getpath(dict, [x1,x2,x3,...])` - returns `dict.x1.x2.x3` or `undefined`
+
+* `find(dict,{options},callback(path,value){....})`  Find all paths in a dictionary.  Useful for converting trees into tabular form.  Options are: `{maxdepth:3,prefix:["each","row","starts","with"]}`
+
+
