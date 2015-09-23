@@ -32,7 +32,7 @@ Then:
     cat dat.jsonl | jline-pretty                              # Pretty-prints the JSON
     # For a full awk-like tool, write javascript:
     cat dat.jsonl | jline-foreach 'console.log(Math.round(record.foo.bar / record.foo.bat))'
-    cat dat.jsonl | jline-foreach begin::global.sum=0 sum+=record.foo.bar end::'emit(global.sum)'
+    cat dat.jsonl | jline-foreach begin::global.sum=0 sum+=record.foo.bar end::'emit(sum)'
     ... etc
 
 # Documentation
