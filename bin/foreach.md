@@ -50,4 +50,4 @@ All standard nodejs functions are available and in addition:
 
 * `find(dict,{options},callback(path,value){....})`  Find all paths in a dictionary.  Useful for converting trees into tabular form.  Options are: `{maxdepth:3,prefix:["each","row","starts","with"]}`
 
-
+* `tm` - the tree-math library.

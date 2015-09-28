@@ -1,6 +1,6 @@
 {
   "name": "jline",
-  "version": "0.0.39",
+  "version": "0.0.40",
   "description": "Sort, grep and join files where every line is JSON.",
   "main": "index.js",
   "bin": {
@@ -58,7 +58,7 @@
   "dependencies": {
     "docopt": "^0.4.1",
     "split": "^0.3.0",
-    "tree-math": "0.0.16",
+    "tree-math": "0.0.17",
     "ya-csv": "^0.9.4"
   }
 }

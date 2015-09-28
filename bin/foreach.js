@@ -32,11 +32,13 @@ function keyvals(dict, callback){
 
 function setpath(subject,path,value){
 	var c=path.length;
-	var ans = path.reduce(function(s,n){return s[n]=--c?(s[n]||{}):value;var after=s[n];},subject);
+	path.reduce(function(s,n){return s[n]=(--c?(s[n]||{}):value);},subject);
 }
 function getpath(subject,path){
 	return path.reduce(function(s,n){if(s!==undefined)return s[n];},subject);
 }
+var tm = require('tree-math');
+
 function find(data, options, callback) {
     if (typeof(options)==='function'){
         callback = options;
@@ -68,8 +70,8 @@ var source = require('./clean')(process.stdin);
 source.on('comment', function(c){console.log(c);});
 eventHandlers.forEach(function(tuple){
     var event = tuple[0].toLowerCase();
-    var code  = Function('require','emit','keyvals','setpath','getpath','find','flatten', 'record', 'lineNumber', 'line', 'recordNumber', tuple[1])
-               .bind(null,req,      emit,  keyvals , setpath , getpath , find , flatten);
+    var code  = Function('require','emit','keyvals','setpath','getpath','tm','find','flatten', 'record', 'lineNumber', 'line', 'recordNumber', tuple[1])
+               .bind(null,req,      emit,  keyvals , setpath , getpath , tm , find , flatten);
     code.name = event;
     if (['beg','begin','start','beginning'].indexOf(event)!== -1) code();
     else source.on(event, code);
