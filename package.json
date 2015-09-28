@@ -58,7 +58,7 @@
   "dependencies": {
     "docopt": "^0.4.1",
     "split": "^0.3.0",
-    "tree-math": "0.0.3",
+    "tree-math": "0.0.16",
     "ya-csv": "^0.9.4"
   }
 }

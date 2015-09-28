@@ -31,17 +31,19 @@ var outvals     = values.map(function(a){return a.length===1?a[0]:a[1];});
 var all = {};
 parseStream(process.stdin)
 .on('jline', function(record){
-        var storepath = inpaths.map(function(path){return getPath(record, [].concat(path));});
+	var recordPath = getPath.bind(null,record);
+        var storepath = inpaths.map(recordPath);
+	var storenode = storepath.reduce(function(d,k){if(d[k]===undefined)d[k]={};return d[k];},all);
         invals.forEach(function(inpath, index){
-            incrementPath(all, storepath.concat(outvals[index]), getPath(record, [].concat(inpath)));
+            incrementPath(storenode, outvals[index], getPath(record, inpath));
         });
 })
 .on('end', function(){
         var maxdepth = inpaths.length;
         var path = [];
-	find(all, function(path, val){
+	find(all,{maxdepth:maxdepth}, function(path, val){
             outpaths.forEach(function(outpath, index){
-                setPath(val, outpath.concat([]), path[index]);
+                setPath(val, outpath, path[index]);
             });
             console.log(JSON.stringify(val));
         }, path, maxdepth);
