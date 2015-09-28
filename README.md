@@ -29,6 +29,10 @@ Then:
     cat dat.jsonl | jline-sort foo.bar                        # Sorts on the key foo.bar
     cat dat.jsonl | jline-filter 'foo.bat>9'                  # Selects just those lines
     cat dat.jsonl | jline-select foo.bar:bar foo.bat:bat mitz # Returns lines such as {"bar":9,"bat":49,"mitz":"ding"}
+    cat dat.jsonl | jline-pretty                              # Pretty-prints the JSON
+    # For a full awk-like tool, write javascript:
+    cat dat.jsonl | jline-foreach 'console.log(Math.round(record.foo.bar / record.foo.bat))'
+    cat dat.jsonl | jline-foreach begin::global.sum=0 sum+=record.foo.bar end::'emit(sum)'
     ... etc
 
 # Documentation
