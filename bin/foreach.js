@@ -9,6 +9,7 @@ var opt = require('../lib/opt').fancy({filename:__filename, usage:
 
 var eventHandlers = [];
 process.argv.slice(2).forEach(function(arg){
+    if (/^-[lq]+$/.test(arg)) return;
     var match = arg.match(/^([a-zA-Z]+)::(.*)/);
     if (match === null){
         eventHandlers.push(['jline',arg]);

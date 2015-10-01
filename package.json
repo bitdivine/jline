@@ -1,6 +1,6 @@
 {
   "name": "jline",
-  "version": "0.0.41",
+  "version": "0.0.42",
   "description": "Sort, grep and join files where every line is JSON.",
   "main": "index.js",
   "bin": {
