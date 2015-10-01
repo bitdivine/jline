@@ -57,3 +57,35 @@ All standard nodejs functions are available and in addition:
 * `find(dict,{options},callback(path,value){....})`  Find all paths in a dictionary.  Useful for converting trees into tabular form.  Options are: `{maxdepth:3,prefix:["each","row","starts","with"]}`
 
 * `tm` - the tree-math library.
+
+### Modules
+You can `require` any npm modules in your NODE_PATH.  For example:
+
+    # First install a module; it doesn't matter where.
+    # I'll install one globally:
+    $ sudo npm install -g request-promise
+    ...
+    # For me the global modules are here:
+    $ ls /usr/local/lib/node_modules/ | grep request-promise
+    request-promise
+    #
+    # Now use that module:
+    #
+    $ export NODE_PATH="/usr/local/lib/node_modules/"
+    $ echo '{"url":"http://winning.gold"}' | jline-foreach 'beg::req=require("request-promise")' 'req(record.url).then(console.log)'
+    <html>
+    <head>
+    ...
+
+Here is another example.  MongoDB has no good way of upserting fields from the command line.  But there is a node module for that:
+
+    echo '{"page":"index.html","hour":"2015-09-18T21:00:00Z","visitors":1001}' |\
+    jline-foreach \
+        'beg::dp=require("bluebird").promisifyAll(require("mongodb").MongoClient).connectAsync("mongodb://localhost:27017/nginx")' \
+        'dp.then(function(db){
+           updates = {}
+           updates["visitors.hour."+record.hour] = record.visitors;
+           db.collection("pagestats").update({_id:record.page},{$set:updates},{upsert:true});});' \
+        'end::dp.then(function(db){db.close()})'
+
+
