@@ -3,7 +3,7 @@ csv.md
 
 Convert JSON lines to CSV.
 
-This uses the keys of the first line as the column headimgs.
+This uses the keys of the first line as the column headings.
 
 ## Command line:
 
