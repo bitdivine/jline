@@ -11,6 +11,12 @@ Execute a function for each JSON line.  This is roughly equivalent to gawk for J
 
 ### Code
 
+The flags are:
+
+* `-q` - quiet - don't pass comments through.
+
+* `-l` - log - start the output with a comment giving this command
+
 Each argument is of the form: "event::code".  If the event is omitted it is assumed to be `jline`.  Others are:
 
 * `beginning`/`beg`/`begin`

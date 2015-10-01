@@ -2,9 +2,9 @@
 
 // Execute some code for each record.
 
-require('../lib/opt').fancy({filename:__filename, usage:
+var opt = require('../lib/opt').fancy({filename:__filename, usage:
 [ 'Usage: jline-foreach [--help|--version]'
-, '       jline-foreach [-l] <cmd>...'
+, '       jline-foreach [-l] [-q] <cmd>...'
 ].join("\n")});
 
 var eventHandlers = [];
@@ -67,7 +67,7 @@ function flatten(data, callback, prefix, maxdepth) {
 
 
 var source = require('./clean')(process.stdin);
-source.on('comment', function(c){console.log(c);});
+if (!opt["-q"])source.on('comment', function(c){console.log(c);});
 eventHandlers.forEach(function(tuple){
     var event = tuple[0].toLowerCase();
     var code  = Function('require','emit','keyvals','setpath','getpath','tm','find','flatten', 'record', 'lineNumber', 'line', 'recordNumber', tuple[1])
