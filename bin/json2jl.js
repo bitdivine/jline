@@ -17,7 +17,7 @@ function getPath(thing, path){
 }
 
 var data = JSON.parse(fs.readFileSync(opt["<filename>"]));
-var path = parsePath(opt["<path>"]||'');
+var path = parsePath(opt["--path"]||'');
 var selection = getPath(data,path);
 
 if (opt["-a"]){
