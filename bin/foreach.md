@@ -58,7 +58,7 @@ All standard nodejs functions are available and in addition:
 
 * `tm` - the tree-math library.
 
-### Modules
+### Require Modules
 You can `require` any npm modules in your NODE_PATH.  For example:
 
     # First install a module; it doesn't matter where.
@@ -68,6 +68,8 @@ You can `require` any npm modules in your NODE_PATH.  For example:
     # For me the global modules are here:
     $ ls /usr/local/lib/node_modules/ | grep request-promise
     request-promise
+    # Yours are probably in:
+    $ here "$(npm config get prefix)/lib/node_modules"
     #
     # Now use that module:
     #
