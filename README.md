@@ -9,7 +9,7 @@ The JSON lines format is formally described at [http://jsonlines.org/](http://js
 
 Install [node](http://nodejs.org/), if you don't have it already:
 
-    curl "https://gist.githubusercontent.com/bitdivine/309a1594e891dec70461/raw/4a96a04dfa179eee531647347c485a8750b9ea66/install-nodejs.sh" > node-installer.sh
+    which node || curl "https://gist.githubusercontent.com/bitdivine/309a1594e891dec70461/raw/4a96a04dfa179eee531647347c485a8750b9ea66/install-nodejs.sh" > node-installer.sh
     sudo sh node-installer.sh
 
 Install jline with the node package manager:
