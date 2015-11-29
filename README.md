@@ -16,6 +16,12 @@ Install jline with the node package manager:
 
     sudo npm install -g jline
 
+Check that jline is in your PATH:
+
+    which jline-pretty
+
+If jlin-pretty is not found, have a look at the [troubleshooting](./TROUBLESHOOTING.md) page.
+
 # Examples
 
 Assume a file `dat.jsonl` with lines:
