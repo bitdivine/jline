@@ -75,3 +75,8 @@ Use `--help` or refer to the markdown files:
 * [jline-mysql2jl](bin/mysql2jl.md) - EXPERIMENTAL - mysql output to JSON dictionaries
 * [jline-mysql2jla](bin/mysql2jla.md) - EXPERIMENTAL - mysql output to JSON arrays
 * [jline-json2jl](bin/json2jl.md) - EXPERIMENTAL - JSON to JSON lines.
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/bitdivine/jline/badge.svg?style=beer-square)](https://beerpay.io/bitdivine/jline)  [![Beerpay](https://beerpay.io/bitdivine/jline/make-wish.svg?style=flat-square)](https://beerpay.io/bitdivine/jline?focus=wish)
