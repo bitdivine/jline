@@ -3,7 +3,9 @@ csv.md
 
 Convert JSON lines to CSV.
 
-This uses the keys of the first line as the column headings.
+When reading from stdin, this uses the keys of the first line as the column headings.
+
+When the input file is given as an argument it is scanned twice, once to collect all the keys and a second time to emit the data.
 
 ## Command line:
 
