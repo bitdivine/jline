@@ -9,8 +9,13 @@ var by = process.argv[2];
 var parseStream = require('./clean');
 
 function csvRecord(record){
-    var json = JSON.stringify(record);
-    return json.substr(1,json.length-2);
+	return record.map(x =>
+		 (x===undefined)?''
+		:(x===null)?''
+		:(x==='')?''
+		:(typeof(x)==="string")?'"'+x.replace(/"/g,'""').replace(/\r/g,'\\r').replace(/\n/g,'\\n').replace(/\t/g,'\\t')+'"'
+		:String(x)
+		).join(",");
 }
 
 function getHeaders(stream){
@@ -49,7 +54,7 @@ if(require.main === module) {
     process.exit(2);
   }
   process.stdout.on('error',process.exit);
-  console.log.apply(null,['#'].concat(process.argv));
+  //console.log.apply(null,['#'].concat(process.argv));
   var infile = process.argv[2];
   if (infile === undefined) {
       streamToCsv(process.stdin)
