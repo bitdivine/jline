@@ -13,7 +13,7 @@ function csvRecord(record){
 		 (x===undefined)?''
 		:(x===null)?''
 		:(x==='')?''
-		:(typeof(x)==="string")?'"'+x.replace(/"/g,'""').replace(/\r/g,'\\r').replace(/\n/g,'\\n').replace(/\t/g,'\\t')+'"'
+		:(typeof(x)==="string")?'"'+x.replace(/\\/g,'\\\\').replace(/"/g,'""').replace(/\r/g,'\\r').replace(/\n/g,'\\n').replace(/\t/g,'\\t')+'"'
 		:String(x)
 		).join(",");
 }
