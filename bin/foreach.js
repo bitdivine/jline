@@ -33,7 +33,7 @@ function keyvals(dict, callback){
 
 function setpath(subject,path,value){
 	var c=path.length;
-	path.reduce(function(s,n){return s[n]=(--c?(s[n]||{}):value);},subject);
+	path.reduce(function(s,n){s[n]=(--c?(s[n]||{}):value); return s[n];},subject);
 }
 function getpath(subject,path){
 	return path.reduce(function(s,n){if(s!==undefined)return s[n];},subject);

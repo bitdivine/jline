@@ -61,5 +61,9 @@
     "split": "^0.3.0",
     "tree-math": "0.0.17",
     "ya-csv": "^0.9.4"
+  },
+  "dev-dependencies": {},
+  "devDependencies": {
+    "jshint": "^2.12.0"
   }
 }

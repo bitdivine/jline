@@ -25,8 +25,8 @@ function join(infilePointer, joinKey, dictionary){
 			console.log(JSON.stringify(ans));
 		})
 		.on('error', (e) => nay(e))
-		.on('end', () => yay())
-	} catch (e) { nay(e) }});
+		.on('end', () => yay());
+	} catch (e) { nay(e); }});
 }
 
 function createReadStream(filename) {
@@ -45,7 +45,7 @@ function loadDict(joinKey, filename) {
 		.on('jline', (data) => ans[data[joinKey]] = data)
 		.on('error', (e) => nay(e))
 		.on('end', () => yay(ans));
-	} catch (e) { nay(e) }});
+	} catch (e) { nay(e); }});
 }
 
 function set(d,k,v) {

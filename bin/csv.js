@@ -25,11 +25,11 @@ function getHeaders(stream){
         .on('jline', function(record){
             Object.keys(record).forEach(function(key){
                 headers[key] = null;
-            })
+            });
         })
         .on('end', function(){
-            yay(Object.keys(headers))
-        })
+            yay(Object.keys(headers));
+        });
     });
 }
 
