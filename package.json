@@ -57,7 +57,7 @@
   },
   "homepage": "https://github.com/bitdivine/jline",
   "dependencies": {
-    "docopt": "^0.4.1",
+    "docopt": "^0.6.2",
     "split": "^0.3.0",
     "tree-math": "0.0.17",
     "ya-csv": "^0.9.4"
